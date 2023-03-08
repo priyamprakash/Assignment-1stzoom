@@ -1,6 +1,10 @@
 package com.assignment.githubrepolist.di
 
+import android.app.Application
+import androidx.room.Room
 import com.assignment.githubrepolist.api.GitApi
+import com.assignment.githubrepolist.db.RepoDAO
+import com.assignment.githubrepolist.db.RepoDatabase
 import com.assignment.githubrepolist.utils.Constants
 import com.assignment.githubrepolist.utils.network.NetworkConnectionInterceptor
 import dagger.Module
@@ -49,5 +53,20 @@ class NetworkModule {
     ): GitApi {
         return retrofitBuilder.client(okHttpClient).build().create(GitApi::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideRepoDatabase(app: Application): RepoDatabase {
+        return Room.databaseBuilder(app, RepoDatabase::class.java, "repos_db")
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRepoDao(repoDatabase: RepoDatabase): RepoDAO {
+        return repoDatabase.getRepoDAO()
+    }
+
 
 }

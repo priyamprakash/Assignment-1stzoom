@@ -1,11 +1,9 @@
 package com.assignment.githubrepolist.viewmodel
 
-import android.service.autofill.UserData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.assignment.githubrepolist.model.repodetail.response.RepoDetailResponse
 import com.assignment.githubrepolist.repository.GitRepository
-import com.assignment.githubrepolist.utils.*
 import com.assignment.githubrepolist.utils.network.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -38,6 +36,8 @@ class GitViewModel @Inject constructor(private val gitRepository: GitRepository)
                         repoDetails = response
                     )
                 }
+
+                gitRepository.saveRepositoryToLocal(response)
 
             }.onError { _, message ->
                 _getRepoDetailUiState.update {
