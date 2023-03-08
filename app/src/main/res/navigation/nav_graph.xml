@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/landingScreenFragment">
+
+    <fragment
+        android:id="@+id/landingScreenFragment"
+        android:name="com.assignment.githubrepolist.ui.fragments.LandingScreenFragment"
+        android:label="LandingScreenFragment" >
+        <action
+            android:id="@+id/action_landingScreenFragment_to_addRepositoryFragment"
+            app:destination="@id/addRepositoryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addRepositoryFragment"
+        android:name="com.assignment.githubrepolist.ui.fragments.AddRepositoryFragment"
+        android:label="fragment_add_repository"
+        tools:layout="@layout/fragment_add_repository" />
+</navigation>
