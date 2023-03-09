@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/landingScreenFragment"
-        android:name="com.assignment.githubrepolist.ui.fragments.LandingScreenFragment"
+        android:name="com.assignment.githubrepolist.presentation.ui.fragments.LandingScreenFragment"
         android:label="LandingScreenFragment" >
         <action
             android:id="@+id/action_landingScreenFragment_to_addRepositoryFragment"
@@ -16,7 +16,13 @@
 
     <fragment
         android:id="@+id/addRepositoryFragment"
-        android:name="com.assignment.githubrepolist.ui.fragments.AddRepositoryFragment"
+        android:name="com.assignment.githubrepolist.presentation.ui.fragments.AddRepositoryFragment"
         android:label="fragment_add_repository"
-        tools:layout="@layout/fragment_add_repository" />
+        tools:layout="@layout/fragment_add_repository" >
+        <action
+            android:id="@+id/action_addRepositoryFragment_to_landingScreenFragment"
+            app:destination="@id/landingScreenFragment"
+            app:popUpTo="@id/addRepositoryFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
