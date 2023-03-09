@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -38,14 +39,23 @@ class AddRepositoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.apply{
+        binding.apply {
             addButton.setOnClickListener {
                 val username = editTextUserName.text.toString().trim()
                 val reponame = editTextRepositoryName.text.toString().trim()
-                gitViewModel.getRepositoryDetail(username, reponame)
-                observeAddRepoUiState()
-                Navigation.findNavController(requireActivity(), R.id.fragmentContainerView)
-                    .navigate(R.id.action_addRepositoryFragment_to_landingScreenFragment)
+
+                if (username.isEmpty() || reponame.isEmpty()) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Please fill owner name and repository name",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    gitViewModel.getRepositoryDetail(username, reponame)
+                    observeAddRepoUiState()
+
+                }
+
             }
         }
 
@@ -56,9 +66,24 @@ class AddRepositoryFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 gitViewModel.addRepoUiState.collectLatest { addRepoUiState ->
 
-                        addRepoUiState.repoDetails?.let {
-                            Log.d(Constants.TAG, "observeAddRepoUiState: ${it.name}: ${it.html_url} :  ${it.description}")
+                    addRepoUiState.repoDetails?.let {
+                        Log.d(
+                            Constants.TAG,
+                            "observeAddRepoUiState: ${it.name}: ${it.html_url} :  ${it.description}"
+                        )
+                    }
+
+                    addRepoUiState.message?.let {
+                        if (it == "Repository Added Successfully") {
+                            Navigation.findNavController(
+                                requireActivity(),
+                                R.id.fragmentContainerView
+                            )
+                                .navigate(R.id.action_addRepositoryFragment_to_landingScreenFragment)
                         }
+                        Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+                        gitViewModel.messageAlreadyDisplayed()
+                    }
 
                 }
             }

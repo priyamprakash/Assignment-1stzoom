@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:fontFamily="@font/open_sans"
-        android:text="Add Repository to your list"
+        android:text="@string/add_repository_to_your_list"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/open_sans"
-        android:text="Enter owner name here"
+        android:text="@string/enter_owner_name_here"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="normal"
@@ -57,11 +57,12 @@
             android:layout_margin="12dp"
             android:background="@null"
             android:ems="10"
+            android:autofillHints="priyamprakash"
             android:fontFamily="@font/open_sans"
-            android:hint="owner name"
+            android:hint="@string/owner_name"
             android:inputType="text"
             android:textColorHint="#7bc96f"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -71,7 +72,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Enter repository name here"
+        android:text="@string/enter_repository_name_here"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="normal"
@@ -100,10 +101,11 @@
             android:background="@null"
             android:ems="10"
             android:fontFamily="@font/open_sans"
-            android:hint="repository name"
+            android:hint="@string/repository_name"
             android:inputType="text"
+            android:autofillHints="Cheezy-Notes-Api"
             android:textColorHint="#7bc96f"
-            android:textSize="14dp" />
+            android:textSize="14sp" />
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -114,10 +116,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:backgroundTint="@color/green"
-        android:text="Add Repository"
-        android:textAllCaps="true"
+        android:text="@string/add_repository"
+        android:textAllCaps="false"
         android:textColor="@color/white"
-        app:cornerRadius="4dp"
+        app:cornerRadius="6dp"
         android:fontFamily="@font/open_sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

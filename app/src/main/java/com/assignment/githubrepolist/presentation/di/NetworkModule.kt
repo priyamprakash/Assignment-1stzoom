@@ -1,14 +1,8 @@
 package com.assignment.githubrepolist.presentation.di
 
-import android.app.Application
-import androidx.room.Room
 import com.assignment.githubrepolist.data.api.GitApi
-import com.assignment.githubrepolist.data.db.RepoDAO
-import com.assignment.githubrepolist.data.db.RepoDatabase
-import com.assignment.githubrepolist.data.repository.GitRepositoryImpl
 import com.assignment.githubrepolist.data.utils.Constants
 import com.assignment.githubrepolist.data.utils.network.NetworkConnectionInterceptor
-import com.assignment.githubrepolist.domain.GitRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -55,27 +49,5 @@ class NetworkModule {
     ): GitApi {
         return retrofitBuilder.client(okHttpClient).build().create(GitApi::class.java)
     }
-
-    @Singleton
-    @Provides
-    fun provideRepoDatabase(app: Application): RepoDatabase {
-        return Room.databaseBuilder(app, RepoDatabase::class.java, "repos_db")
-            .fallbackToDestructiveMigration()
-            .build()
-    }
-
-    @Singleton
-    @Provides
-    fun provideRepoDao(repoDatabase: RepoDatabase): RepoDAO {
-        return repoDatabase.getRepoDAO()
-    }
-
-    @Singleton
-    @Provides
-    fun provideGitRepository(gitRepositoryImpl: GitRepositoryImpl): GitRepository {
-        return gitRepositoryImpl
-    }
-
-
 
 }

@@ -11,7 +11,9 @@
         android:label="LandingScreenFragment" >
         <action
             android:id="@+id/action_landingScreenFragment_to_addRepositoryFragment"
-            app:destination="@id/addRepositoryFragment" />
+            app:destination="@id/addRepositoryFragment"
+            app:popUpTo="@id/landingScreenFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment

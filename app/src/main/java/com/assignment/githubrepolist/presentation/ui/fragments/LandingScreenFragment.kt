@@ -73,17 +73,18 @@ class LandingScreenFragment : Fragment(), CellClickListener {
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
-    override fun onCellClickListener(operation: String, url: String) {
+    override fun onCellClickListener(operation: String, item: RepoDetail) {
         when (operation) {
             "Share" -> {
                 val intent = Intent(Intent.ACTION_SEND)
+                val message = "Check out ${item.name} repository: ${item.html_url}"
                 intent.type = "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT, url)
+                intent.putExtra(Intent.EXTRA_TEXT, message)
                 startActivity(intent)
             }
             "Open Browser" -> {
                 val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(url)
+                intent.data = Uri.parse(item.html_url)
                 startActivity(intent)
             }
         }

@@ -47,6 +47,7 @@
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/open_sans"
                 android:maxLines="2"
+                android:ellipsize="end"
                 android:text="This is an API folder made with Express JS. Purpose is to make login system and CRUD functionality for Notes."
                 android:textColor="#525455"
                 android:textSize="14sp"
@@ -72,10 +73,10 @@
                 android:layout_marginTop="6dp"
                 android:backgroundTint="@color/green"
                 android:fontFamily="@font/open_sans"
-                android:text="SHARE"
+                android:text="Share"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                app:cornerRadius="4dp"
+                app:cornerRadius="6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view" />
 

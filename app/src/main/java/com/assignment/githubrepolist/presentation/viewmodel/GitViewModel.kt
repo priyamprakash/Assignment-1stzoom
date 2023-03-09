@@ -37,7 +37,8 @@ class GitViewModel @Inject constructor(private val gitRepository: GitRepository)
                 _getRepoDetailUiState.update {
                     it.copy(
                         loading = false,
-                        repoDetails = response
+                        repoDetails = response,
+                        message = "Repository Added Successfully"
                     )
                 }
 
@@ -47,7 +48,7 @@ class GitViewModel @Inject constructor(private val gitRepository: GitRepository)
                 _getRepoDetailUiState.update {
                     it.copy(
                         loading = false,
-                        message = message
+                        message = "Something went wrong. Owner and repository name should be valid"
                     )
                 }
 
@@ -63,10 +64,20 @@ class GitViewModel @Inject constructor(private val gitRepository: GitRepository)
                     _getRepoDetailUiState.update {
                         it.copy(
                             loading = false,
-                            message = "${throwable.message}"
+                            message = "Something went wrong"
                         )
                     }
                 }
+            }
+        }
+    }
+
+    fun messageAlreadyDisplayed() {
+        viewModelScope.launch {
+            _getRepoDetailUiState.update {
+                it.copy(
+                    message = null
+                )
             }
         }
     }

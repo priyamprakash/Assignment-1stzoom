@@ -2,4 +2,10 @@
     <string name="app_name">Github RepoList</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_repository">Add Repository</string>
+    <string name="repository_name">repository name</string>
+    <string name="enter_repository_name_here">Enter repository name here</string>
+    <string name="owner_name">owner name</string>
+    <string name="enter_owner_name_here">Enter owner name here</string>
+    <string name="add_repository_to_your_list">Add Repository to your list</string>
 </resources>

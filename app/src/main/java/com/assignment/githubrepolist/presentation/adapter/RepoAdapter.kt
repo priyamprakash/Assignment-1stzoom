@@ -27,10 +27,10 @@ class RepoAdapter(private val context: Context, private val cellClickListener: C
         holder.textRepositoryName.text = item.name
         holder.repoDescription.text = item.description
         holder.shareButton.setOnClickListener {
-            cellClickListener.onCellClickListener("Share", item.html_url)
+            cellClickListener.onCellClickListener("Share", item)
         }
         holder.repoCardView.setOnClickListener {
-            cellClickListener.onCellClickListener("Open Browser", item.html_url)
+            cellClickListener.onCellClickListener("Open Browser", item)
         }
 
     }
