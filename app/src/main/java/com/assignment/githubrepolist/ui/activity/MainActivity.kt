@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_add -> {
                 findNavController(R.id.fragmentContainerView).navigate(R.id.action_landingScreenFragment_to_addRepositoryFragment)
-
                 true
             }
             else -> super.onOptionsItemSelected(item)

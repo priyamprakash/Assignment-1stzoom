@@ -1,5 +1,7 @@
 package com.assignment.githubrepolist.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.assignment.githubrepolist.model.repodetail.response.RepoDetailResponse
@@ -16,10 +18,19 @@ import javax.inject.Inject
 @HiltViewModel
 class GitViewModel @Inject constructor(private val gitRepository: GitRepository) : ViewModel() {
 
+    private val dataList = MutableLiveData<List<RepoDetailResponse>>()
+    val repoDataList: LiveData<List<RepoDetailResponse>> = dataList
+
+    suspend fun getSavedNews() {
+        return gitRepository.getSavedRepoList().collect { dataList ->
+            this@GitViewModel.dataList.value = dataList
+        }
+    }
+
     private val _getRepoDetailUiState = MutableStateFlow(GetRepoDetailUIState())
     val addRepoUiState = _getRepoDetailUiState.asStateFlow()
 
-    fun getRepositoryDetail(username: String , reponame: String) {
+    fun getRepositoryDetail(username: String, reponame: String) {
         viewModelScope.launch(Dispatchers.Main) {
             _getRepoDetailUiState.update {
                 it.copy(
@@ -67,8 +78,9 @@ class GitViewModel @Inject constructor(private val gitRepository: GitRepository)
         }
     }
 }
+
 data class GetRepoDetailUIState(
     val loading: Boolean = false,
-    val message : String? = null,
+    val message: String? = null,
     val repoDetails: RepoDetailResponse? = null
 )

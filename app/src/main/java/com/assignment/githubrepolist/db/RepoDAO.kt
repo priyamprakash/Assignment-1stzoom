@@ -10,7 +10,7 @@ interface RepoDAO {
     suspend fun insert(repoDetailResponse: RepoDetailResponse)
 
     @Query("SELECT * FROM repos")
-    fun getAllArticles(): Flow<List<RepoDetailResponse>>
+    fun getAllReposFromLocalDB(): Flow<List<RepoDetailResponse>>
 
 
 }
