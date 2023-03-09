@@ -24,3 +24,4 @@ Dagger Hilt -> In order to simply Dependency Injection
 
 Material Components -> For styling , Card Views and Button 
 
+![SS1](https://user-images.githubusercontent.com/65361533/223929710-8920f69a-9c02-47a8-84ee-2de3ad8df6a4.jpg)
