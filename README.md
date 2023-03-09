@@ -4,14 +4,23 @@ This app contains two Screens:
 2. Add Repository Fragment >> Repository details are fetched on submitting owner name and repository name to this screen. 
 
 Language : Kotlin 
+
 Architecture Pattern : MVVM [Model , View , View Model]
 
 Technology Stack : 
+
+
 Room Database -> to persist List Data in Local storage
+
 Coroutines  -> to simplify asynchronous programming in the project 
+
 Navigation Components -> to make navigation through the app easier
+
 Retrofit  -> To Fetch Repository details through Github API. 
+
 Okttp -> to logg the Api results 
+
 Dagger Hilt -> In order to simply Dependency Injection 
+
 Material Components -> For styling , Card Views and Button 
 
