@@ -1,7 +1,5 @@
 package com.assignment.githubrepolist.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.assignment.githubrepolist.model.repodetail.response.RepoDetailResponse
@@ -9,6 +7,7 @@ import com.assignment.githubrepolist.repository.GitRepository
 import com.assignment.githubrepolist.utils.network.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -18,14 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class GitViewModel @Inject constructor(private val gitRepository: GitRepository) : ViewModel() {
 
-    private val dataList = MutableLiveData<List<RepoDetailResponse>>()
-    val repoDataList: LiveData<List<RepoDetailResponse>> = dataList
+    val repoListData: Flow<List<RepoDetailResponse>> = gitRepository.getSavedRepoList()
 
-    suspend fun getSavedNews() {
-        return gitRepository.getSavedRepoList().collect { dataList ->
-            this@GitViewModel.dataList.value = dataList
-        }
-    }
 
     private val _getRepoDetailUiState = MutableStateFlow(GetRepoDetailUIState())
     val addRepoUiState = _getRepoDetailUiState.asStateFlow()

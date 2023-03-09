@@ -5,11 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.LandingScreenFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/text"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Landing Screen" />
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        tools:listitem="@layout/item_repo_card"
+        />
 
 </FrameLayout>
