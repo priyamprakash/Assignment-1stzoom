@@ -10,8 +10,9 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.assignment.githubrepolist.R
 import com.assignment.githubrepolist.data.model.repodetail.response.RepoDetail
+import com.assignment.githubrepolist.presentation.cellClickInterface.CellClickListener
 
-class RepoAdapter(private val context: Context): RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
+class RepoAdapter(private val context: Context, private val cellClickListener: CellClickListener): RecyclerView.Adapter<RepoAdapter.RepoViewHolder>() {
 
     var items: ArrayList<RepoDetail> = ArrayList()
 
@@ -25,7 +26,12 @@ class RepoAdapter(private val context: Context): RecyclerView.Adapter<RepoAdapte
         val item = items[position]
         holder.textRepositoryName.text = item.name
         holder.repoDescription.text = item.description
-
+        holder.shareButton.setOnClickListener {
+            cellClickListener.onCellClickListener("Share", item.html_url)
+        }
+        holder.repoCardView.setOnClickListener {
+            cellClickListener.onCellClickListener("Open Browser", item.html_url)
+        }
 
     }
 

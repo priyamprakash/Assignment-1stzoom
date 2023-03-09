@@ -1,5 +1,7 @@
 package com.assignment.githubrepolist.presentation.ui.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +16,11 @@ import com.assignment.githubrepolist.R
 import com.assignment.githubrepolist.data.model.repodetail.response.RepoDetail
 import com.assignment.githubrepolist.databinding.FragmentLandingScreenBinding
 import com.assignment.githubrepolist.presentation.adapter.RepoAdapter
+import com.assignment.githubrepolist.presentation.cellClickInterface.CellClickListener
 import com.assignment.githubrepolist.presentation.viewmodel.GitViewModel
 import kotlinx.coroutines.launch
 
-class LandingScreenFragment : Fragment() {
+class LandingScreenFragment : Fragment(), CellClickListener {
     private var _binding: FragmentLandingScreenBinding? = null
     private val binding get() = _binding!!
 
@@ -64,10 +67,26 @@ class LandingScreenFragment : Fragment() {
 
     private fun setUpRecyclerView() {
         recyclerView = binding.recyclerView
-        adapter = RepoAdapter(requireContext())
+        adapter = RepoAdapter(requireContext(),this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+    }
+
+    override fun onCellClickListener(operation: String, url: String) {
+        when (operation) {
+            "Share" -> {
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "text/plain"
+                intent.putExtra(Intent.EXTRA_TEXT, url)
+                startActivity(intent)
+            }
+            "Open Browser" -> {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(url)
+                startActivity(intent)
+            }
+        }
     }
 
 
